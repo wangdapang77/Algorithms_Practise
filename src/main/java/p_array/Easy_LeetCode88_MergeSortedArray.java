@@ -69,7 +69,7 @@ public class Easy_LeetCode88_MergeSortedArray {
 
     /**
      * 正向双指针
-     *
+     * 此算法的时间复杂度为O(n+m)
      * @param nums1
      * @param m
      * @param nums2
@@ -113,6 +113,7 @@ public class Easy_LeetCode88_MergeSortedArray {
 
     /**
      * 反向双指针
+     * 此算法的时间复杂度为O(n+m)
      * @param nums1
      * @param m
      * @param nums2
@@ -120,5 +121,45 @@ public class Easy_LeetCode88_MergeSortedArray {
      */
     public void merge3(int[] nums1, int m, int[] nums2, int n) {
 
+        // 指针1 指向nums1
+        int p1 = m - 1;
+
+        // 指针2 指向nums2
+        int p2 = n - 1;
+
+        int lastIndex = m + n - 1;
+
+        // 倒序的开头 是nums1的最后一位
+        for (int i = lastIndex; i >= 0; i--) {
+
+            if (p1 == -1) {
+                // p1 == -1 说明 p1的指针已经处理完最后一位了 则接下去使用nums2填充数据
+                nums1[i] = nums2[p2--];
+            } else if(p2 == -1) {
+
+                // p2 == n 说明 p2的指针已经处理完最后一位了 则接下去使用nums1填充数据
+                nums1[i] = nums1[p1--];
+            } else if (nums1[p1] > nums2[p2]) {
+
+                // 以上都没进入 说明 两个指针取了两个数组的数据 需要进行大小比较 更大的数据进行填充
+                nums1[i] = nums1[p1--];
+            } else {
+                nums1[i] = nums2[p2--];
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums1 = new int[3];
+
+        nums1[0] = 1;
+        nums1[1] = 2;
+        nums1[2] = 3;
+
+        int p = 0;
+        for (int i = 0; i < 3; i++) {
+            System.err.println(nums1[p++]);
+        }
     }
 }
