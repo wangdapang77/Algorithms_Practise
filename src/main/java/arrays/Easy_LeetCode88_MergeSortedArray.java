@@ -1,4 +1,4 @@
-package p_array;
+package arrays;
 
 import java.util.Arrays;
 

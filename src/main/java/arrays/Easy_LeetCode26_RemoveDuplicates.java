@@ -1,4 +1,4 @@
-package p_array;
+package arrays;
 
 /**
  * url: https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/
